@@ -1,8 +1,18 @@
+import Head from "next/head";
 import CardAbout from "@/components/CardAbout";
 import RepositoryList from "@/components/RepositoryList";
-import Head from "next/head";
+import { useGetReposQuery } from "@/state/apiSlice";
+import { useRouter } from "next/router";
 
 export default function Home() {
+  const { query } = useRouter();
+
+  const { data, isLoading, isSuccess, isError } = useGetReposQuery(
+    query.username || "IsnuMdr"
+  );
+
+  console.log(data);
+
   return (
     <>
       <Head>
@@ -21,13 +31,23 @@ export default function Home() {
         </nav>
       </header>
       <main className="container my-3">
-        <section>
+        <section className="mb-2">
           <h3>About User</h3>
-          <CardAbout />
+          <CardAbout
+            data={data?.user}
+            isLoading={isLoading}
+            isSuccess={isSuccess}
+            isError={isError}
+          />
         </section>
-        <section>
+        <section className="mb-2">
           <h3>Repository List</h3>
-          <RepositoryList />
+          <RepositoryList
+            data={data?.repoList}
+            isLoading={isLoading}
+            isSuccess={isSuccess}
+            isError={isError}
+          />
         </section>
       </main>
     </>

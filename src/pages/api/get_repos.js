@@ -4,22 +4,22 @@ const { Octokit } = require("@octokit/rest");
 export default async (req, res) => {
   try {
     const {
-      query: { user = "IsnuMdr" },
+      query: { username },
     } = req;
 
     const octokit = new Octokit({
       auth: process.env.GITHUB_AUTH_TOKEN,
     });
 
-    const userData = await octokit.request(
-      `https://api.github.com/users/${user}`
+    const user = await octokit.request(
+      `https://api.github.com/users/${username}`
     );
     const repoList = await octokit.request(
-      `https://api.github.com/users/${user}/repos`
+      `https://api.github.com/users/${username}/repos`
     );
 
     return res.status(200).json({
-      userData: userData.data,
+      user: user.data,
       repoList: repoList.data,
     });
   } catch (error) {
