@@ -3,6 +3,7 @@ import CardAbout from "@/components/CardAbout";
 import RepositoryList from "@/components/RepositoryList";
 import { useGetReposQuery } from "@/state/apiSlice";
 import { useRouter } from "next/router";
+import SearchInput from "@/components/SearchInput";
 
 export default function Home() {
   const { query } = useRouter();
@@ -27,6 +28,7 @@ export default function Home() {
             <span className="navbar-brand mb-0 h1 fw-bold text-white">
               Repo List
             </span>
+            <SearchInput />
           </div>
         </nav>
       </header>

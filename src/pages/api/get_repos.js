@@ -12,10 +12,10 @@ export default async (req, res) => {
     });
 
     const user = await octokit.request(
-      `https://api.github.com/users/${username}`
+      `${process.env.GITHUB_API_URL}users/${username}`
     );
     const repoList = await octokit.request(
-      `https://api.github.com/users/${username}/repos`
+      `${process.env.GITHUB_API_URL}users/${username}/repos`
     );
 
     return res.status(200).json({
