@@ -24,6 +24,7 @@ export default function SearchInput() {
       <div className="input-group">
         <input
           type="search"
+          name="search"
           className="form-control d-block"
           placeholder="Search username"
           aria-label="Search username"

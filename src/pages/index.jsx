@@ -1,18 +1,15 @@
-import Head from "next/head";
-import CardAbout from "@/components/CardAbout";
-import RepositoryList from "@/components/RepositoryList";
-import { useGetReposQuery } from "@/state/apiSlice";
-import { useRouter } from "next/router";
-import SearchInput from "@/components/SearchInput";
+import Head from 'next/head';
+import CardAbout from '@/components/CardAbout';
+import RepositoryList from '@/components/RepositoryList';
+import { useGetReposQuery } from '@/state/apiSlice';
+import { useRouter } from 'next/router';
+import SearchInput from '@/components/SearchInput';
+import Link from 'next/link';
 
 export default function Home() {
   const { query } = useRouter();
 
-  const { data, isLoading, isSuccess, isError } = useGetReposQuery(
-    query.username || "IsnuMdr"
-  );
-
-  console.log(data);
+  const { data, isLoading, isSuccess, isError } = useGetReposQuery(query.username || 'IsnuMdr');
 
   return (
     <>
@@ -25,9 +22,9 @@ export default function Home() {
       <header>
         <nav className="navbar bg-dark">
           <div className="container">
-            <span className="navbar-brand mb-0 h1 fw-bold text-white">
+            <Link href="/" className="navbar-brand mb-0 h1 fw-bold text-white">
               Repo List
-            </span>
+            </Link>
             <SearchInput />
           </div>
         </nav>
